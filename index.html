@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js" target="_blank"></script>
+    
+      
+    <script src="./js/Rotation.js"></script>
+    <script src="./js/Fish.js"></script>
+    <script src="./js/Coin.js"></script>
+    
+  </head>
+  <body>
+    <a-scene physics="debug:false">
+      <a-a-assets>
+        <a-asset-item id="island" src="assets/island/scene.gltf"></a-asset-item>
+        <a-asset-item id="treasure" src="assets/treasure/model.gltf"></a-asset-item>
+        <a-asset-item id="fish" src="assets/fish/scene.gltf"></a-asset-item>
+        <a-asset-item id="turtle" src="assets/turtle/scene.gltf"></a-asset-item>        
+        <a-asset-item id="scuba_driver" src="assets/scuba_driver/scene.gltf"></a-asset-item>
+      </a-a-assets>
+
+  
+      <a-sky geometry="primitive: sphere;" material="shader: gradient; bottomColor: #00009e; topColor:109 205 227;offset: 0.0001;" radius="100" theta-length="180" side="double" animation="property: rotation; to: 0 300 0; easing:linear; loop: true; dur: 500000">
+        <a-entity gltf-model="#island" scale="1 1 1" position="0 -15 -40" ></a-entity>
+        <a-entity gltf-model="#treasure" scale="15 15 15" position="-9 -41 -30" rotation="0 10 -15"></a-entity>
+        <a-entity gltf-model="#treasure" scale="15 15 15" position="-12 -40 -11" rotation="-12 90 -17"></a-entity>
+        <a-entity gltf-model="#turtle" scale="0.005 0.005 0.005" position="-24 11 -30" rotation="25 45 0"></a-entity>
+      </a-sky>
+      <a-entity position="0 0 0" id="fish" fish> </a-entity>
+      <a-entity position="0 0 0" id="coins" coins> </a-entity>
+      <a-entity gltf-model="#scuba_driver" scale="0.1 0.1 0.1" position="5 0 15" rotation="0 90 -20" diver-rotation-reader dynamic-body="mass: 0; shape:sphere;sphereRadius:5" game-play>
+        <a-sphere id="bubble1" position="52.9829 119.97737 -49.38121" radius="1" color="#b2ebf2" animation="property: position; to: 52.9829 300 -49.38121;easing:linear; loop: true; dur: 2000" ></a-sphere>
+      </a-entity>
+      <a-cylinder color="#00009e" radius="100" opacity="0.2"></a-cylinder>     
+      <a-entity camera="active: true" look-controls position="0 10 25"></a-entity>
+
+      <!--Text-->
+      <a-entity id="header" position="3 5 0">
+        
+        <!-- Title -->
+        <a-entity position="-29.5 21.5 0" text="font: exo2bold; align: center; width: 40; color: black; value: VR Scuba Dive"></a-entity>
+
+        <!-- Timer -->
+        <a-entity position="-23.5 19.3 0">
+          <a-entity position="-1.5 0.07 0" text="font: aileronsemibold; width: 12; color: black; value: TIME\nREMAINING"></a-entity>
+          <a-entity id="timer" position="-9.8 0.3 0" text="font: exo2bold; align: center; width: 30; color: black; value: 00:00"></a-entity>
+        </a-entity>
+
+        <a-entity position="-18 19.3 0">
+          <a-entity position="15 2 0" text="font:exo2bold; align:center;width:15;color:black;value:targets\nremaining"></a-entity>
+          <a-entity id="counter" position="15 0 0" text="font:exo2bold; align:center;width:30;color:black;value:20"></a-entity>
+        </a-entity>
+
+        <a-entity position="-18 19.3 0">
+          <a-entity position="40 2 0" text="font:exo2bold; align:center;width:15;color:black;value:score"></a-entity>
+          <a-entity id="score" position="40 0 0" text="font:exo2bold; align:center;width:30;color:black;value:0"></a-entity>
+        </a-entity>
+      </a-entity>
+      <a-entity id="gameover" position="0 13 0" text="font:exo2bold;align:center;width:75; color:red;value: GAME OVER" visible="false">
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
